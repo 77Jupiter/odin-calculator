@@ -39,3 +39,10 @@ const displayElement = document.querySelector('.js-display');
 function updatePage() {
   displayElement.textContent = `${num1} ${operator} ${num2}`;
 }
+
+function clear() {
+  num1 = '';
+  operator = '';
+  num2 = '';
+  updatePage();
+}

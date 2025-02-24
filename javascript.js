@@ -87,3 +87,8 @@ equalButton.addEventListener('click', () => {
     displayElement.textContent = num1;
   } 
 })
+
+const clearButton = document.querySelector('.js-clear-button');
+clearButton.addEventListener('click', () => {
+  clear();
+})

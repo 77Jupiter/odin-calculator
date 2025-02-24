@@ -52,9 +52,13 @@ function updateNumAndOperator() {
   const operatorButton = document.querySelectorAll('.js-operator-button');
   operatorButton.forEach((button) => {
     button.addEventListener('click', () => {
-      if (num1 && !isNaN(num1)) {
+      if (num1 && !isNaN(num1) && num2 && !isNaN(num2)) {
+        displayAnswer(); 
         operator = button.textContent;
-        updatePage(); 
+        updatePage();
+      } else if (num1 && !isNaN(num1)) {
+        operator = button.textContent;
+        updatePage();
       } else {
         clear();
         displayElement.textContent = 'Please enter a number first';
@@ -77,6 +81,15 @@ updateNumAndOperator();
 
 const equalButton = document.querySelector('.js-equal-button');
 equalButton.addEventListener('click', () => {
+  displayAnswer();
+})
+
+const clearButton = document.querySelector('.js-clear-button');
+clearButton.addEventListener('click', () => {
+  clear();
+})
+
+function displayAnswer() {
   const answer = operate(operator, num1, num2);
   if (answer === 'Cannot divide by 0') {
     displayElement.textContent = answer;
@@ -86,9 +99,4 @@ equalButton.addEventListener('click', () => {
     operator = '';
     displayElement.textContent = num1;
   } 
-})
-
-const clearButton = document.querySelector('.js-clear-button');
-clearButton.addEventListener('click', () => {
-  clear();
-})
+}

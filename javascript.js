@@ -50,10 +50,27 @@ function clear() {
 function updateNumAndOperator() {
   const numButton = document.querySelectorAll('.js-num-button');
   const operatorButton = document.querySelectorAll('.js-operator-button');
+
+  const decimalButton = document.querySelector('.js-decimal-button');
+
+  decimalButton.addEventListener('click', () => {
+    if (operator === '+' || operator === '-' || operator === '*' || operator === '/') {
+      if (!num2.includes('.')) {
+        num2 += '.';
+        updatePage();
+      }
+    } else if (!num1.includes('.')) {
+      num1 += '.';
+      updatePage();
+    }
+  })
+
   operatorButton.forEach((button) => {
-    button.addEventListener('click', () => {
+    button.addEventListener('click', () => {  
       if (num1 && !isNaN(num1) && num2 && !isNaN(num2)) {
-        displayAnswer(); 
+        const answer = operate(operator, num1, num2);
+        num1 = Math.round(answer * 100) / 100;
+        num2 = '';
         operator = button.textContent;
         updatePage();
       } else if (num1 && !isNaN(num1)) {

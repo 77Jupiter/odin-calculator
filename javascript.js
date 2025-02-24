@@ -33,3 +33,9 @@ function operate(operator, num1, num2) {
       return divide(num1, num2);
   }
 }
+
+const displayElement = document.querySelector('.js-display');
+
+function updatePage() {
+  displayElement.textContent = `${num1} ${operator} ${num2}`;
+}

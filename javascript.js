@@ -46,3 +46,31 @@ function clear() {
   num2 = '';
   updatePage();
 }
+
+function updateNumAndOperator() {
+  const numButton = document.querySelectorAll('.js-num-button');
+  const operatorButton = document.querySelectorAll('.js-operator-button');
+  operatorButton.forEach((button) => {
+    button.addEventListener('click', () => {
+      if (num1 && !isNaN(num1)) {
+        operator = button.textContent;
+        updatePage(); 
+      } else {
+        clear();
+        displayElement.textContent = 'Please enter a number first';
+      }    
+    })
+  });
+  numButton.forEach((button) => {
+    button.addEventListener('click', () => {
+      if (operator === '+' || operator === '-' || operator === '*' || operator === '/') {
+        num2 += button.textContent;
+      } else {
+        num1 += button.textContent;
+      }
+      updatePage();  
+    })
+  })
+}
+
+updateNumAndOperator();

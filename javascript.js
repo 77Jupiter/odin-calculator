@@ -108,9 +108,8 @@ clearButton.addEventListener('click', () => {
 
 function displayAnswer() {
   const answer = operate(operator, num1, num2);
-  if (!answer) {
-    clear();
-    displayElement.textContent = 'Please enter a valid equation';
+  if (!num1 || !operator || !num2) {
+    displayElement.textContent = 'Invalid equation';
     return;
   }
   if (answer === 'Cannot divide by 0') {
@@ -120,3 +119,5 @@ function displayAnswer() {
     displayElement.textContent = Math.round(answer * 100) / 100;
   } 
 }
+
+// Add backspace button and general keyboard support

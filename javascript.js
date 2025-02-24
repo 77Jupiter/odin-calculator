@@ -74,3 +74,16 @@ function updateNumAndOperator() {
 }
 
 updateNumAndOperator();
+
+const equalButton = document.querySelector('.js-equal-button');
+equalButton.addEventListener('click', () => {
+  const answer = operate(operator, num1, num2);
+  if (answer === 'Cannot divide by 0') {
+    displayElement.textContent = answer;
+  } else {
+    num1 = Math.round(answer * 100) / 100;
+    num2 = '';
+    operator = '';
+    displayElement.textContent = num1;
+  } 
+})

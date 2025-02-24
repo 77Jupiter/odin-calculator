@@ -91,6 +91,11 @@ clearButton.addEventListener('click', () => {
 
 function displayAnswer() {
   const answer = operate(operator, num1, num2);
+  if (!answer) {
+    clear();
+    displayElement.textContent = 'Please enter a valid equation';
+    return;
+  }
   if (answer === 'Cannot divide by 0') {
     displayElement.textContent = answer;
   } else {

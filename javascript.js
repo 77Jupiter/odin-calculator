@@ -2,6 +2,13 @@ let num1 = '';
 let num2 = '';
 let operator = '';
 
+const numButton = document.querySelectorAll('.js-num-button');
+const operatorButton = document.querySelectorAll('.js-operator-button');
+const decimalButton = document.querySelector('.js-decimal-button');
+const displayElement = document.querySelector('.js-display');
+const equalButton = document.querySelector('.js-equal-button');
+const clearButton = document.querySelector('.js-clear-button');
+
 function add(num1, num2) {
   return Number(num1) + Number(num2);
 }
@@ -34,8 +41,6 @@ function operate(operator, num1, num2) {
   }
 }
 
-const displayElement = document.querySelector('.js-display');
-
 function updatePage() {
   displayElement.textContent = `${num1} ${operator} ${num2}`;
 }
@@ -48,11 +53,6 @@ function clear() {
 }
 
 function updateNumAndOperator() {
-  const numButton = document.querySelectorAll('.js-num-button');
-  const operatorButton = document.querySelectorAll('.js-operator-button');
-
-  const decimalButton = document.querySelector('.js-decimal-button');
-
   decimalButton.addEventListener('click', () => {
     if (operator === '+' || operator === '-' || operator === '*' || operator === '/') {
       if (!num2.includes('.')) {
@@ -96,12 +96,10 @@ function updateNumAndOperator() {
 
 updateNumAndOperator();
 
-const equalButton = document.querySelector('.js-equal-button');
 equalButton.addEventListener('click', () => {
   displayAnswer();
 })
 
-const clearButton = document.querySelector('.js-clear-button');
 clearButton.addEventListener('click', () => {
   clear();
 })
@@ -120,4 +118,40 @@ function displayAnswer() {
   } 
 }
 
-// Add backspace button and general keyboard support
+// Add backspace button and general keyboard support and style the calculator
+
+document.body.addEventListener('keydown', (event) => {
+  if (event.key === 'Backspace') {
+    if (operator === '+' || operator === '-' || operator === '*' || operator === '/') {
+      num2 = num2.replace(/.$/, '');
+      updatePage(); 
+      return;
+    } else {
+      num1 = num1.replace(/.$/, '');
+      updatePage();  
+    }
+    
+  } 
+  if (/\d/.test(event.key)) {
+    if (operator === '+' || operator === '-' || operator === '*' || operator === '/') {
+      num2 += event.key;
+      updatePage();  
+      return;
+    } else {
+      num1 += event.key;
+      updatePage();  
+    }
+  } 
+  
+  if (num1 === '' || isNaN(num1)) {
+    displayElement.textContent = 'Please enter a number first';
+    return;
+  } else if (['+', '-', '*', '/'].includes(event.key)) {
+    operator = event.key;
+    updatePage();
+  }
+
+  if (event.key === 'Enter') {
+    displayAnswer();
+  } 
+});

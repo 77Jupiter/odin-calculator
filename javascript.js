@@ -9,6 +9,8 @@ const displayElement = document.querySelector('.js-display');
 const equalButton = document.querySelector('.js-equal-button');
 const clearButton = document.querySelector('.js-clear-button');
 
+
+//Basic operator functions
 function add(num1, num2) {
   return Number(num1) + Number(num2);
 }
@@ -28,6 +30,8 @@ function divide(num1, num2) {
   return Number(num1) / Number(num2); 
 }
 
+
+// Operate function to determine the operator being used
 function operate(operator, num1, num2) {
   switch(operator) {
     case '+':
@@ -41,10 +45,14 @@ function operate(operator, num1, num2) {
   }
 }
 
+
+// Function to update the display of the page
 function updatePage() {
   displayElement.textContent = `${num1} ${operator} ${num2}`;
 }
 
+
+// Function to clear the display of the page and reset the variables used to store numbers and the operator
 function clear() {
   num1 = '';
   operator = '';
@@ -52,6 +60,8 @@ function clear() {
   updatePage();
 }
 
+
+// Function to update num1, num2 and the operator as well as some error handling
 function updateNumAndOperator() {
   decimalButton.addEventListener('click', () => {
     if (operator === '+' || operator === '-' || operator === '*' || operator === '/') {
@@ -104,6 +114,8 @@ clearButton.addEventListener('click', () => {
   clear();
 })
 
+
+// Function to display the answer on the page
 function displayAnswer() {
   const answer = operate(operator, num1, num2);
   if (!num1 || !operator || !num2) {
@@ -118,8 +130,8 @@ function displayAnswer() {
   } 
 }
 
-// Add backspace button and general keyboard support and style the calculator
 
+// Code to handle keyboard support
 document.body.addEventListener('keydown', (event) => {
   if (event.key === 'Backspace') {
     if (operator === '+' || operator === '-' || operator === '*' || operator === '/') {

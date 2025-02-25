@@ -1,0 +1,36 @@
+body {
+  background-color: rgb(39, 39, 39);
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+div {
+  margin-bottom: 1em;
+}
+
+button {
+  border-radius: 50px;
+  border: none;
+  height: 80px;
+  padding: 0 32px;
+  margin-right: 0.5em;
+  font-size: 24px;
+}
+
+.num-button {
+  background-color: lightblue;
+  color: rgb(0, 0, 0);
+}
+
+.clear-button {
+  height: 40px;
+}
+
+.operator-button {
+  background-color: pink;
+}
+
+.display {
+  font-size: 50px;
+  color: lightgreen;
+}
